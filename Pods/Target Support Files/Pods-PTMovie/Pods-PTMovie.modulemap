@@ -1,0 +1,6 @@
+framework module Pods_PTMovie {
+  umbrella header "Pods-PTMovie-umbrella.h"
+
+  export *
+  module * { export * }
+}
