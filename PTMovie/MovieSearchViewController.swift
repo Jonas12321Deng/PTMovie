@@ -187,7 +187,7 @@ extension MovieSearchViewController: UIScrollViewDelegate {
         let height = scrollView.frame.height
         
         if contentHeight == 0 || isFetchingMovies {
-                    return
+            return
         }
         
         if offsetY > contentHeight - height {

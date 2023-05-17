@@ -1,0 +1,20 @@
+When building the app, I made several decisions to ensure its functionality and user experience. Here are some of the key decisions and challenges I faced during the development process:
+
+1. App Structure: I decided to use the Model-View-Controller (MVC) architectural pattern to separate concerns and improve code organization. This allowed me to have separate classes for data models, view controllers, and table view cells.
+
+2. API Integration: To fetch movie data, I integrated with the Movie Database API. I created a dedicated `MovieDatabaseAPI` class responsible for handling API requests and parsing JSON responses using the SwiftyJSON library. I also defined a `Result` enum to handle success and failure cases.
+
+3. Core Data Integration: To cache search results, I integrated Core Data to store movie data locally. I created a Core Data entity called `MovieItem` to represent a movie object and implemented methods to fetch and save data.
+
+4. Pagination: I implemented pagination in the table view to load more search results as the user scrolls to the bottom. By tracking the current page and updating the API request with the appropriate page number, I fetched additional data and appended it to the existing movie array.
+
+Challenges Faced:
+- One challenge I faced was managing asynchronous API requests and updating the UI accordingly. To overcome this, I used closures and the `DispatchQueue.main.async` method to ensure UI updates happened on the main thread after fetching and processing the API data.
+
+- Another challenge was handling network connectivity and offline caching. I used the Reachability framework to check for network availability and implemented logic to fetch cached data when the network is unavailable.
+
+- Additionally, managing the search functionality and handling user input required careful consideration. I implemented debouncing by triggering the API request only when the user stops typing or explicitly taps the search button.
+
+To overcome these challenges, I relied on thorough testing, debugging, and leveraging the extensive documentation and community support available for the frameworks and libraries used in the project. I also iteratively refined the implementation by breaking down tasks into smaller steps and verifying the behavior at each stage.
+
+Overall, the challenges faced were addressed through careful planning, research, and iterative development, resulting in a functional and user-friendly movie search app.
