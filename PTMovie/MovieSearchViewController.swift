@@ -18,6 +18,10 @@ class MovieSearchViewController: UIViewController {
 
     private var models = [MovieItem]()
 
+    private var currentPage = 1
+    
+    private var isFetchingMovies = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -48,23 +52,39 @@ class MovieSearchViewController: UIViewController {
         searchController.searchBar.placeholder = "Search for movies"
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
         definesPresentationContext = true
     }
 
     private func fetchMovies(withQuery query: String) {
+        
+        guard !isFetchingMovies else {
+                return
+        }
+            
+        isFetchingMovies = true
+        
         if NetworkManager.shared.isConnected() {
             // 网络正常，从后端接口获取数据
-            movieDatabaseAPI.searchMovies(query: query) { [weak self] result in
+            movieDatabaseAPI.searchMovies(query: query, page: currentPage) { [weak self] result in
                 switch result {
                 case .success(let movies):
                     DispatchQueue.main.async {
-                        self?.movies = movies
+                        
+                        self?.isFetchingMovies = false
+                        
+                        if self?.currentPage == 1 {
+                            self?.movies = movies
+                        } else {
+                            self?.movies.append(contentsOf: movies)
+                        }
                         self?.tableView.reloadData()
                         self?.saveSearchResultsToCoreData(movies: movies)
                     }
                 case .failure(let error):
                     // 处理错误
                     print("Error searching for movies: \(error.localizedDescription)")
+                    PopupManager.shared.showAlert(on: self, with: "Error", with: "Error searching for movies: \(error.localizedDescription)")
                 }
             }
         } else {
@@ -78,13 +98,6 @@ class MovieSearchViewController: UIViewController {
             }
         }
     }
-
-    private func showNoInternetAlert() {
-        let alert = UIAlertController(title: "No Internet Connection", message: "You are currently offline. Please check your network connection and try again.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
-    }
-
 
     private func showMovieDetails(forMovie movie: Movie) {
         let movieDetailsViewController = MovieDetailsViewController(movie: movie)
@@ -164,6 +177,27 @@ extension MovieSearchViewController: UITableViewDelegate {
     }
 }
 
+// MARK: - UIScrollViewDelegate
+
+extension MovieSearchViewController: UIScrollViewDelegate {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let height = scrollView.frame.height
+        
+        if contentHeight == 0 || isFetchingMovies {
+                    return
+        }
+        
+        if offsetY > contentHeight - height {
+            currentPage += 1
+            fetchMovies(withQuery: searchController.searchBar.text!)
+        }
+    }
+
+}
+
 // MARK: - UISearchResultsUpdating
 
 extension MovieSearchViewController: UISearchResultsUpdating {
@@ -173,7 +207,19 @@ extension MovieSearchViewController: UISearchResultsUpdating {
             tableView.reloadData()
             return
         }
-
-        fetchMovies(withQuery: query)
     }
 }
+
+extension MovieSearchViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let query = searchBar.text?.trimmingCharacters(in: .whitespaces), !query.isEmpty else {
+            movies = []
+            tableView.reloadData()
+            return
+        }
+
+        fetchMovies(withQuery: query)
+        searchBar.resignFirstResponder() // 隐藏键盘
+    }
+}
+

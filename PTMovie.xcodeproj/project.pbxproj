@@ -20,6 +20,7 @@
 		F572E0DF2A14C0D80008096C /* MovieItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F572E0DD2A14C0D80008096C /* MovieItem+CoreDataClass.swift */; };
 		F572E0E02A14C0D80008096C /* MovieItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F572E0DE2A14C0D80008096C /* MovieItem+CoreDataProperties.swift */; };
 		F572E0E22A14CE130008096C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F572E0E12A14CE130008096C /* NetworkManager.swift */; };
+		F572E0E62A14ED180008096C /* PopupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F572E0E52A14ED180008096C /* PopupManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		F572E0DD2A14C0D80008096C /* MovieItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F572E0DE2A14C0D80008096C /* MovieItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F572E0E12A14CE130008096C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		F572E0E52A14ED180008096C /* PopupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,11 +110,12 @@
 				F540606B2A10A5E80017E2AA /* LaunchScreen.storyboard */,
 				F540606E2A10A5E80017E2AA /* Info.plist */,
 				F54060662A10A5E70017E2AA /* PTMovie.xcdatamodeld */,
-				F572E0E12A14CE130008096C /* NetworkManager.swift */,
 				F53FB03A2A10A9E500F018E9 /* MovieSearchViewController.swift */,
 				F53FB03C2A10AA2100F018E9 /* MovieDetailsViewController.swift */,
 				F53FB03E2A10B6F800F018E9 /* MovieTableViewCell.swift */,
 				F53FB0402A11BE8700F018E9 /* MovieDatabaseAPI.swift */,
+				F572E0E12A14CE130008096C /* NetworkManager.swift */,
+				F572E0E52A14ED180008096C /* PopupManager.swift */,
 			);
 			path = PTMovie;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 				F572E0DF2A14C0D80008096C /* MovieItem+CoreDataClass.swift in Sources */,
 				F572E0E02A14C0D80008096C /* MovieItem+CoreDataProperties.swift in Sources */,
 				F53FB03F2A10B6F800F018E9 /* MovieTableViewCell.swift in Sources */,
+				F572E0E62A14ED180008096C /* PopupManager.swift in Sources */,
 				F54060622A10A5E70017E2AA /* ViewController.swift in Sources */,
 				F540605E2A10A5E70017E2AA /* AppDelegate.swift in Sources */,
 				F53FB03B2A10A9E500F018E9 /* MovieSearchViewController.swift in Sources */,

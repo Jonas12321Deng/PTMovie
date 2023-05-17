@@ -45,8 +45,8 @@ class MovieDatabaseAPI {
         self.apiKey = apiKey
     }
 
-    func searchMovies(query: String, completion: @escaping (Result<[Movie], Error>) -> Void) {
-        let urlString = "\(baseURL)/search/movie?api_key=\(apiKey)&query=\(query)"
+    func searchMovies(query: String, page: Int, completion: @escaping (Result<[Movie], Error>) -> Void) {
+        let urlString = "\(baseURL)/search/movie?api_key=\(apiKey)&query=\(query)&page=\(page)"
 
         guard let url = URL(string: urlString) else {
             completion(.failure(NetworkError.invalidURL))
