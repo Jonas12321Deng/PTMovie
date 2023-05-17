@@ -1,20 +1,24 @@
 PODS:
   - Kingfisher (7.6.2)
+  - ReachabilitySwift (5.0.0)
   - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
   - Kingfisher (~> 7.0)
+  - ReachabilitySwift
   - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
   trunk:
     - Kingfisher
+    - ReachabilitySwift
     - SwiftyJSON
 
 SPEC CHECKSUMS:
   Kingfisher: 6c5449c6450c5239166510ba04afe374a98afc4f
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 6f58e8e21b23279691430e9ad01ca589d508a327
+PODFILE CHECKSUM: a004ba3319840853a2b06cdf134a2a85201ca429
 
 COCOAPODS: 1.11.3

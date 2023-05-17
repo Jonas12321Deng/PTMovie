@@ -7,5 +7,5 @@ target 'PTMovie' do
   pod 'SwiftyJSON', '~> 4.0'
   pod 'Kingfisher', '~> 7.0'
   # Pods for PTMovie
-
+  pod 'ReachabilitySwift'
 end

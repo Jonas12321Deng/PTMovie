@@ -24,6 +24,14 @@ struct Movie {
         posterPath = json["poster_path"].stringValue
         overview = json["overview"].stringValue
     }
+    
+    init(id: Int, title: String, releaseDate: String, posterPath: String, overview: String) {
+            self.id = id
+            self.title = title
+            self.releaseDate = releaseDate
+            self.posterPath = posterPath
+            self.overview = overview
+        }
 }
 
 import Foundation
